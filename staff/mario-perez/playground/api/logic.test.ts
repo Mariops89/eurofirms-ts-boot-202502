@@ -8,3 +8,11 @@ try {
 } catch (error) {
     console.error(error)
 }
+
+try {
+    logic.authenticateUser("peterpan", "123123123")
+
+    console.log(data.users)
+} catch (error) {
+    console.error(error)
+}

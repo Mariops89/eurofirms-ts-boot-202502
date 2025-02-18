@@ -1,4 +1,4 @@
-import { User, Post } from "./types.ts"
+import { User, Post } from "./types"
 
 const peter: User = { id: "abc-123", name: "Peter Pan", email: "peter@pan.com", username: "peterpan", password: "123123123" }
 const wendy: User = { id: "def-456", name: "Wendy Darling", email: "wendy@darling.com", username: "wendydarling", password: "123123123" }
