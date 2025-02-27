@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "npx tsc --lib es2015,dom *.ts",
+    "compile": "npx tsc --lib es2015,dom --noEmit *.ts",
     "test": " npx tsx logic.test.ts"
   },
   "keywords": [],

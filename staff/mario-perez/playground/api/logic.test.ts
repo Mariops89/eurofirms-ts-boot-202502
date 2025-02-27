@@ -10,9 +10,9 @@ try {
 }
 
 try {
-    logic.authenticateUser("peterpan", "123123123")
+    let userId = logic.authenticateUser("peterpan", "123123123")
 
-    console.log(data.users)
+    console.log("User id autenticated: " + userId)
 } catch (error) {
     console.error(error)
 }
