@@ -1,8 +1,10 @@
 import { Logic } from "./types"
 import data from "./data"
 import { DuplicityError, CredentialsError } from "./errors"
+
 const logic: Logic = {
-    registerUser(name: string, email: string, username: string, password: string) {
+    // se puede quitar el tipo de dato si ya se ha especificado en el tipado
+    registerUser(name, email, username, password) {
         let user = data.users.find(user => user.email === email || user.username === username)
 
         if (user) throw new DuplicityError('user already exists')
@@ -18,7 +20,7 @@ const logic: Logic = {
         data.users.push(user)
     },
 
-    authenticateUser(username: string, password: string) {
+    authenticateUser(username, password) {
 
         let user = data.users.find(user => user.username === username)
 
