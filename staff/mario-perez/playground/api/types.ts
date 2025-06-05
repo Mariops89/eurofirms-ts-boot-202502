@@ -7,23 +7,23 @@ type User = {
 }
 
 type Post = {
-    id: string,
-    author: string,
-    image: string,
-    text: string,
+    id: string
+    author: string
+    image: string
+    text: string
     date: Date
 }
 
 type Data = {
-    uuid(): string,
-    users: User[],
+    uuid(): string
+    users: User[]
     posts: Post[]
 }
 
 type Logic = {
-    registerUser(name: string, email: string, username: string, password: string): void
-
+    registerUser(name: string, email: string, username: string, password: string): Promise<void>
     authenticateUser(username: string, password: string): string
+    getUserName(userId: string)
 }
 
 export {

@@ -9,7 +9,21 @@ class CredentialsError extends Error {
         super(message)
     }
 }
+
+class NotFoundError extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
+
+class SystemError extends Error {
+    constructor(message: string) {
+        super(message)
+    }
+}
 export {
     DuplicityError,
-    CredentialsError
+    CredentialsError,
+    NotFoundError,
+    SystemError
 }

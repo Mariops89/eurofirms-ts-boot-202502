@@ -1,22 +1,27 @@
-import { User, Post } from "./types"
+import express from "express"
+import { SystemError } from "./errors"
+import logic from "./logic"
 
-const peter: User = { id: "abc-123", name: "Peter Pan", email: "peter@pan.com", username: "peterpan", password: "123123123" }
-const wendy: User = { id: "def-456", name: "Wendy Darling", email: "wendy@darling.com", username: "wendydarling", password: "123123123" }
-const pepito: User = { id: "ghi-789", name: "Pepito Grillo", email: "pepito@grillo.com", username: "pepitogrillo", password: "123123123" }
-const campa: User = { id: "jkl-012", name: "Campa Nilla", email: "campa@nilla.com", username: "campanilla", password: "123123123" }
+const api = express()
 
-const post1: Post = { id: "mno-345", author: "abc-123", image: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemFoZHNoYWg2amZ0a3c2aTlhNXVndWpyMTk0bDEzaTRwZ2hyNTdjcCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/cHDi1qNyDvRUA/giphy.gif", text: "taking a nap", date: new Date() }
+api.get('/', (req, res) => {
+    res.send('Hello, API')
+})
 
-//const users: Array<User> = []
-const users: User[] = []
-const posts: Post[] = []
+// TODO implement routes
 
-users.push(peter)
-users.push(wendy)
-users.push(pepito)
-users.push(campa)
+api.use(express.json())
 
-posts.push(post1)
+api.post('/users', (req, res) => {
+    try {
+        const { name, email, username, password } = req.body
 
-console.table(users)
-console.table(posts)
+        logic.registerUser(name, email, username, password)
+        res.status(201).send()
+    } catch (error) {
+        res.status(500).json({ error: SystemError.name, message: error.message })
+    }
+
+})
+
+api.listen(8080, () => console.log('API is up'))
