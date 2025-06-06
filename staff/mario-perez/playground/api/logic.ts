@@ -10,26 +10,33 @@ const logic: Logic = {
     registerUser(name, email, username, password) {
         const user = new User<IUser>({ name, email, username, password })
         return user.save()
-            .catch(error => { throw new SystemError(error.message) })
+            .catch(error => {
+                if (error.code === 11000)
+                    throw new DuplicityError('user already exists')
+                throw new SystemError(error.message)
+            })
             .then(user => { })
     },
 
     authenticateUser(username, password) {
-
-        let user = data.users.find(user => user.username === username)
-
-        if (!user || user.password !== password) {
-            throw new CredentialsError('Wrong credentials')
-        }
-        return user.id
+        return User.findOne({ username })
+            .catch(error => { throw new SystemError(error.message) })
+            .then(user => {
+                if (!user || user.password !== password) {
+                    throw new CredentialsError('Wrong credentials')
+                }
+                return user.id
+            })
     },
 
     getUserName(userId) {
-        const user = data.users.find(user => user.id === userId)
+        return User.findById(userId)
+            .catch(error => { throw new SystemError(error.message) })
+            .then(user => {
+                if (!user) throw new NotFoundError('user not found')
 
-        if (!user) throw new NotFoundError('user not found')
-
-        return user.name
+                return user.name
+            })
     }
 }
 

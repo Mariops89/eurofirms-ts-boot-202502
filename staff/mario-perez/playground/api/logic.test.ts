@@ -39,53 +39,40 @@ mongoose.connect('mongodb://localhost:27017/test-ts')
                 console.error(error)
             }
         }
-
-        console.info('CASE fails on already existing user')
-
-        {
-            // TODO case
-        }
-
+    })
+    .then(() => {
         console.info('TEST authenticateUser')
 
         console.info('CASE success on existing user')
 
         {
-            // TODO case
+            try {
+                return logic.authenticateUser("peterpan", "123123123")
+                    .then((userId) => {
+                        console.log('user authenticated', userId)
+                    })
+                    .catch(error => console.error(error))
+            } catch (error) {
+                console.error(error)
+            }
         }
-
-        console.info('CASE fails on existing user but wrong username')
-
-        {
-            // TODO case
-        }
-
-        console.info('CASE fails on existing user but wrong password')
-
-        {
-            // TODO case
-        }
-
-        console.info('CASE fails no existing user')
-
-        {
-            // TODO case
-        }
-
+    })
+    .then(() => {
         console.info('TEST getUserName')
 
         console.info('CASE success on existing user')
 
         {
-            // TODO case
-        }
-
-        console.info('CASE fails on non-existing user')
-
-        {
-            // TODO case
+            try {
+                return logic.getUserName("68410e9266b5ed87be543190")
+                    .then((userName) => {
+                        console.log('user name gotten', userName)
+                    })
+                    .catch(error => console.error(error))
+            } catch (error) {
+                console.error(error)
+            }
         }
     })
-
     .catch(error => console.error(error))
     .finally(() => mongoose.disconnect())
