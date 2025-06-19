@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npx tsx index.ts",
+    "inspect": "npx tsx --inspect-brk index.ts",
     "compile": "bash -c 'npx tsc --lib es2015,dom --noEmit --esModuleInterop *.ts'",
     "test": "npx tsx logic.test.ts",
     "test-inspect": "tsx --inspect-brk logic.test.ts",
@@ -15,14 +16,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.10",
     "chai": "^5.2.0",
     "mocha": "^11.5.0",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   },
   "dependencies": {
-    "@types/express": "^5.0.2",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.15.1"
   }
 }
