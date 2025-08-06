@@ -74,5 +74,40 @@ mongoose.connect('mongodb://localhost:27017/test-ts')
             }
         }
     })
+    .then(() => {
+        console.info('TEST createPost')
+
+        console.info('CASE success on existing user')
+
+        {
+            try {
+                return logic.createPost("68410e9266b5ed87be543190", "http://image.com/123", "Hola mundo")
+                    .then(result => {
+                        console.assert(result === undefined, "result is undefined")
+                        console.log('post creado')
+                    })
+                    .catch(error => console.error(error))
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    })
+    .then(() => {
+        console.info('TEST getPost')
+
+        console.info('CASE success on existing user')
+
+        {
+            try {
+                return logic.getPosts("68410e9266b5ed87be543190")
+                    .then(posts => {
+                        console.log('posts', posts)
+                    })
+                    .catch(error => console.error(error))
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    })
     .catch(error => console.error(error))
     .finally(() => mongoose.disconnect())
