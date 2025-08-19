@@ -1,4 +1,4 @@
-import { Types, Schema, model } from 'mongoose'
+import { Types, Schema, model } from "mongoose"
 
 const { ObjectId } = Schema.Types
 
@@ -43,7 +43,7 @@ const post = new Schema<IPost>({
     author: {
         type: ObjectId,
         required: true,
-        ref: 'User'
+        ref: "User"
     },
     image: {
         type: String,
@@ -60,8 +60,8 @@ const post = new Schema<IPost>({
     },
 })
 
-const User = model<IUser>('User', user)
-const Post = model<IPost>('Post', post)
+const User = model<IUser>("User", user)
+const Post = model<IPost>("Post", post)
 
 export {
     IUser,
