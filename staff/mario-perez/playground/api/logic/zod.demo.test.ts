@@ -1,4 +1,4 @@
-import { z, ZodSchema } from "zod"
+import { z, ZodType } from "zod"
 import { ValidationError } from "../errors"
 
 const checkId = value => /^[0-9a-fA-F]{24}$/.test(value)
@@ -12,7 +12,7 @@ const nameSchema = z.string().min(1).max(30)
 
 // Con parse
 
-function validateParse<T>(schema: ZodSchema<T>, data: unknown) {
+function validateParse<T>(schema: ZodType<T>, data: unknown) {
     try {
         const result = schema.parse(data)
         console.log("Valid:", result)
@@ -28,7 +28,7 @@ function validateParse<T>(schema: ZodSchema<T>, data: unknown) {
 
 // Con safeParse
 
-function validateSafeParse<T>(schema: ZodSchema<T>, data: unknown) {
+function validateSafeParse<T>(schema: ZodType<T>, data: unknown) {
     const result = schema.safeParse(data)
     // safeParse devuelve un objeto con una propiedad success que indica si la validación fue exitosa o no, y una propiedad data que contiene el valor analizado o un array de errores
 
