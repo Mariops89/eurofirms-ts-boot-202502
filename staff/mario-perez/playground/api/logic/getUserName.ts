@@ -1,7 +1,8 @@
 import { GetUserName } from "./types"
-import { SystemError, NotFoundError } from "../errors"
 import { User } from "../data/models"
-import { validate } from "../validate"
+import { errors, validate } from "com"
+
+const { SystemError, NotFoundError } = errors
 
 export const getUserName: GetUserName = (userId) => {
     validate.id(userId)

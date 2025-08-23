@@ -1,19 +1,15 @@
 import express from "express"
 import jwt from 'jsonwebtoken'
 import mongoose from "mongoose"
+import { errors } from "com"
+import { logic } from "./logic"
 
-import { SystemError } from "./errors"
-import logic from "./logic"
+const { SystemError } = errors
 
+const { JWT_SECRET, PORT, MONGO_URL } = process.env
 
-const JWT_SECRET = 'un secreto muy secreto ...'
-const PORT = 8080
-const MONGO_URL = 'mongodb://localhost:27017/test-ts'
-
-mongoose.connect(MONGO_URL)
+mongoose.connect(MONGO_URL!)
     .then(() => {
-
-
 
         const api = express()
 
@@ -33,7 +29,7 @@ mongoose.connect(MONGO_URL)
                     .then(() => res.status(201).send())
                     .catch(error => res.status(500).json({ error: SystemError.name, message: error.message }))
             } catch (error) {
-                res.status(500).json({ error: SystemError.name, message: error.message })
+                res.status(500).json({ error: SystemError.name, message: (error as Error).message })
             }
 
         })
@@ -44,13 +40,13 @@ mongoose.connect(MONGO_URL)
 
                 logic.authenticateUser(username, password)
                     .then(userId => {
-                        const token = jwt.sign({ sub: userId }, JWT_SECRET)
+                        const token = jwt.sign({ sub: userId }, JWT_SECRET!)
 
                         res.json(token)
                     })
                     .catch(error => res.status(500).json({ error: SystemError.name, message: error.message }))
             } catch (error) {
-                res.status(500).json({ error: SystemError.name, message: error.message })
+                res.status(500).json({ error: SystemError.name, message: (error as Error).message })
             }
 
         })
@@ -67,13 +63,13 @@ mongoose.connect(MONGO_URL)
 
                 const token = authorization.slice(7)
 
-                const { sub: userId } = jwt.verify(token, JWT_SECRET)
+                const { sub: userId } = jwt.verify(token, JWT_SECRET!)
 
                 logic.getUserName(userId as string)
                     .then(name => res.json(name))
                     .catch(error => res.status(500).json({ error: SystemError.name, message: error.message }))
             } catch (error) {
-                res.status(500).json({ error: SystemError.name, message: error.message })
+                res.status(500).json({ error: SystemError.name, message: (error as Error).message })
             }
 
         })

@@ -1,7 +1,8 @@
 import { GetPosts, PostType } from "./types"
-import { SystemError, NotFoundError } from "../errors"
 import { User, Post } from "../data/models"
-import { validate } from "../validate"
+import { errors, validate } from "com"
+
+const { SystemError, NotFoundError } = errors
 
 export const getPosts: GetPosts = (userId) => {
     validate.id(userId, "userId")
