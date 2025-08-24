@@ -66,6 +66,7 @@ const Post = model<IPost>("Post", post)
 export {
     IUser,
     IPost,
+
     User,
-    Post
+    Post,
 }

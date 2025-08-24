@@ -1,8 +1,7 @@
 import mongoose from "mongoose"
-
 import { registerUser } from "./registerUser"
 
-mongoose.connect("mongodb://localhost:27017/test-ts")
+mongoose.connect(process.env.MONGODB_URL!)
     .then(() => {
 
         console.info("TEST registerUser")
