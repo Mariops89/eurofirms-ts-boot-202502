@@ -1,9 +1,9 @@
 import mongoose from "mongoose"
-import { IUser, User } from "./models"
+import { UserDocType, User } from "./models"
 
 mongoose.connect('mongodb://localhost:27017/test-ts')
     .then(() => {
-        const user = new User<IUser>({
+        const user = new User<Partial<UserDocType>>({
             name: 'Peter Pan',
             email: 'peter@pan.com',
             username: 'peterpan',

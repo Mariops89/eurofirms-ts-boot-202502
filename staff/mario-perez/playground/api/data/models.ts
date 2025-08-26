@@ -2,23 +2,27 @@ import { Types, Schema, model } from "mongoose"
 
 const { ObjectId } = Schema.Types
 
-interface IUser {
+type UserDocType = {
+    _id: Types.ObjectId
     name: string
     email: string
     username: string
     password: string
+    __v: number
 }
 
-interface IPost {
+type PostDocType = {
+    _id: Types.ObjectId
     author: Types.ObjectId
     image: string
     text: string
     date: Date
+    __v: number
 }
 
 
 
-const user = new Schema<IUser>({
+const user = new Schema<UserDocType>({
     name: {
         type: String,
         required: true
@@ -39,7 +43,7 @@ const user = new Schema<IUser>({
     }
 })
 
-const post = new Schema<IPost>({
+const post = new Schema<PostDocType>({
     author: {
         type: ObjectId,
         required: true,
@@ -60,12 +64,12 @@ const post = new Schema<IPost>({
     },
 })
 
-const User = model<IUser>("User", user)
-const Post = model<IPost>("Post", post)
+const User = model<UserDocType>("User", user)
+const Post = model<PostDocType>("Post", post)
 
 export {
-    IUser,
-    IPost,
+    UserDocType,
+    PostDocType,
 
     User,
     Post,

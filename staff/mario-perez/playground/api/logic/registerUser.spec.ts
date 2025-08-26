@@ -1,6 +1,6 @@
 import { expect } from "chai"
 import mongoose from "mongoose"
-import { IUser, User } from "../data/models"
+import { UserDocType, User } from "../data/models"
 import { registerUser } from "./registerUser"
 import { DuplicityError } from "com/errors"
 
@@ -11,7 +11,7 @@ describe("registerUser", () => {
     beforeEach(() => User.deleteMany({}))
 
     it("registers a new user", () => {
-        let value: void, user: IUser | null
+        let value: void, user: UserDocType | null
         return registerUser("Peter Pan", "peter@pan.com", "peterpan", "123123123")
             .then(_value => value = _value)
             .then(() => User.findOne().lean())
@@ -37,6 +37,8 @@ describe("registerUser", () => {
 
             })
     })
+
+
 
     afterEach(() => User.deleteMany({}))
 
