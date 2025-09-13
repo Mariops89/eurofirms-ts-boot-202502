@@ -1,3 +1,10 @@
+type UserType = {
+    id: string
+    name: string
+    email: string
+    username: string
+}
+
 type PostType = {
     id: string
     image: string
@@ -10,7 +17,7 @@ type RegisterUser = (name: string, email: string, username: string, password: st
 
 type AuthenticateUser = (username: string, password: string) => Promise<string>
 
-type GetUserName = (userId: string) => Promise<string>
+type GetUser = (userId: string) => Promise<UserType>
 
 type CreatePost = (userId: string, image: string, text: string) => Promise<void>
 
@@ -21,7 +28,7 @@ type DeletePost = (userId: string, postId: string) => Promise<void>
 type Logic = {
     registerUser: RegisterUser
     authenticateUser: AuthenticateUser
-    getUserName: GetUserName
+    getUser: GetUser
     createPost: CreatePost
     getPosts: GetPosts
     deletePost: DeletePost
@@ -31,9 +38,10 @@ export {
     Logic,
     RegisterUser,
     AuthenticateUser,
-    GetUserName,
+    GetUser,
     CreatePost,
     GetPosts,
     DeletePost,
-    PostType
+    PostType,
+    UserType
 }

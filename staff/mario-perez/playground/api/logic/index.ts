@@ -9,7 +9,7 @@ import { Mongoose } from "mongoose"
 
 import { registerUser } from "./registerUser"
 import { authenticateUser } from "./authenticateUser"
-import { getUserName } from "./getUserName"
+import { getUser } from "./getUser"
 import { createPost } from "./createPost"
 import { getPosts } from "./getPosts"
 import { deletePost } from "./deletePost"
@@ -20,7 +20,8 @@ const logic: Logic = {
     // se puede quitar el tipo de dato si ya se ha especificado en el tipado
     registerUser,
     authenticateUser,
-    getUserName,
+    getUser,
+
     createPost,
     getPosts,
     deletePost

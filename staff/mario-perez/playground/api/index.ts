@@ -1,6 +1,7 @@
-import express from "express"
-import jwt from 'jsonwebtoken'
 import mongoose from "mongoose"
+import express from "express"
+import cors from "cors"
+import jwt from "jsonwebtoken"
 import { errors } from "com"
 import { logic } from "./logic"
 
@@ -12,6 +13,8 @@ mongoose.connect(MONGO_URL!)
     .then(() => {
 
         const api = express()
+
+        api.use(cors())
 
         api.get('/', (req, res) => {
             res.send('Hello, API')
@@ -65,8 +68,8 @@ mongoose.connect(MONGO_URL!)
 
                 const { sub: userId } = jwt.verify(token, JWT_SECRET!)
 
-                logic.getUserName(userId as string)
-                    .then(name => res.json(name))
+                logic.getUser(userId as string)
+                    .then(user => res.json(user))
                     .catch(error => res.status(500).json({ error: SystemError.name, message: error.message }))
             } catch (error) {
                 res.status(500).json({ error: SystemError.name, message: (error as Error).message })
