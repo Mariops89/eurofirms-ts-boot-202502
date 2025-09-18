@@ -11,8 +11,8 @@ mongoose.connect(process.env.MONGODB_URL_TEST!)
         {
             try {
                 return getUser("68410e9266b5ed87be543190")
-                    .then((userName) => {
-                        console.log("user name gotten", userName)
+                    .then((user) => {
+                        console.log("user gotten", user)
                     })
                     .catch(error => console.error(error))
             } catch (error) {

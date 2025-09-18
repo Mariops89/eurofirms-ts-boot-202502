@@ -16,7 +16,7 @@ import { deletePost } from "./deletePost"
 
 const { ObjectId } = Schema.Types
 
-const logic: Logic = {
+export const logic: Logic = {
     // se puede quitar el tipo de dato si ya se ha especificado en el tipado
     registerUser,
     authenticateUser,
@@ -25,8 +25,4 @@ const logic: Logic = {
     createPost,
     getPosts,
     deletePost
-}
-
-export {
-    logic
 }
