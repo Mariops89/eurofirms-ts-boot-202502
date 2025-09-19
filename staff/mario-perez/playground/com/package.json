@@ -6,7 +6,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile-watch": "bash -c 'npx tsc --lib es2015,dom --noEmit --esModuleInterop --skipLibCheck --watch --strict *.ts'"
+    "compile-watch": "bash -c 'npx tsc --watch'"
   },
   "keywords": [],
   "author": "",
